@@ -17,6 +17,19 @@ void insertion_sort(vector<int>& nums){
 }
 // Time Complexity - O(n^2)
 
+void recursive_insertion_sort(vector<int>& nums, int n, int i){
+    if(n == i) return;
+
+    for(int j = i; j<n; j++){
+        if(nums[j] < nums[i-1]){
+            swap(nums[i-1], nums[j]);
+        }
+    }
+
+    recursive_insertion_sort(nums, n, i+1);
+}
+// Time Complexity = O(n*n)
+
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -25,7 +38,7 @@ int main(){
     vector<int> nums(n);
     for(auto &x : nums) cin >> x;
 
-    insertion_sort(nums);
+    recursive_insertion_sort(nums, n, 1);
     for(auto &x : nums) cout << x << " ";
     cout << endl;
 
